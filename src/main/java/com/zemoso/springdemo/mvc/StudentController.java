@@ -4,11 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 @Controller
 @RequestMapping("/student")
 public class StudentController {
-
+    private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
     @RequestMapping("/showForm")
     public String showForm(Model theModel) {
 
@@ -25,7 +26,7 @@ public class StudentController {
     public String processForm(@ModelAttribute("student") Student theStudent) {
 
         // log the input data
-        System.out.println("theStudent: " + theStudent.getFirstName()
+        logger.info("theStudent: " + theStudent.getFirstName()
                 + " " + theStudent.getLastName());
 
         return "student-confirmation";

@@ -2,6 +2,7 @@ package com.zemoso.springdemo.mvc;
 
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Student {
 
@@ -48,7 +49,7 @@ public class Student {
     public void setCountry(String country) {
         this.country = country;
     }
-    public LinkedHashMap<String, String> getCountryOptions() {
+    public Map<String, String> getCountryOptions() {
         return countryOptions;
     }
 

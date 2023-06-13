@@ -10,15 +10,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
-
-    // add an initbinder ... to convert trim input strings
-    // remove leading and trailing whitespaces
-    // resolve issue for our validation
+    private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
     @InitBinder
     public void initBinder(WebDataBinder dataBinder)
     {
@@ -36,8 +34,8 @@ public class CustomerController {
             @Valid @ModelAttribute("customer") Customer theCustomer,
             BindingResult theBindingResult)
     {
-        System.out.println("LastName: |"+theCustomer.getLastName()+"|");
-        System.out.println("Binding result"+theBindingResult);
+        logger.info("LastName: |{}|", theCustomer.getLastName());
+        logger.info("Binding result: {}", theBindingResult);
         if(theBindingResult.hasErrors()){
             return "customer-form";
         }
